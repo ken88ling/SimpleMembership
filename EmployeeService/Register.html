@@ -60,17 +60,51 @@
                     </div>
                 </div>
             </div>
-            
+
             <!--Bootstrap alert to display any validation errors-->
             <div id="divError" class="alert alert-danger collapse">
                 <a href="#" id="linkClose" class="close">&times;</a>
                 <div id="divErrorText"></div>
             </div>
-
-            
-
         </div>
     </div>
 
+
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+
+                //close the bootstrap alert
+                $('#linkClose')
+                    .click(function () {
+                        $('#divError').hide('fade');
+                    });
+
+                // save the new user details
+                $('#btnRegister')
+                    .click(function () {
+
+                        $.ajax({
+                            url: '/api/account/register',
+                            method: 'POST',
+                            data: {
+                                email: $('#txtEmail').val(),
+                                password: $('#txtPassword').val(),
+                                confirmPassword: $('#txtConfirmPassword').val()
+                            },
+                            success: function () {
+                                $('#successModal').modal('show');
+                            },
+                            error: function (jqXHR) {
+                                $('#divErrorText').text(jqXHR.responseText);
+                                $('#divError').show('fade');
+                            }
+                        });
+                    });
+            });
+    </script>
 </body>
 </html>
