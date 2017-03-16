@@ -55,33 +55,39 @@
 		$(document)
 			.ready(function () {
 
-				////close the bootstrap alert
-				//$('#linkClose')
-				//	.click(function () {
-				//		$('#divError').hide('fade');
-				//	});
+				//close the bootstrap alert
+				$('#linkClose')
+					.click(function () {
+						$('#divError').hide('fade');
+					});
 
-				//// save the new user details
-				//$('#btnRegister')
-				//	.click(function () {
+				// save the new user details
+				$('#btnLogin')
+					.click(function () {
 
-				//		$.ajax({
-				//			url: '/api/account/register',
-				//			method: 'POST',
-				//			data: {
-				//				email: $('#txtEmail').val(),
-				//				password: $('#txtPassword').val(),
-				//				confirmPassword: $('#txtConfirmPassword').val()
-				//			},
-				//			success: function () {
-				//				$('#successModal').modal('show');
-				//			},
-				//			error: function (jqXHR) {
-				//				$('#divErrorText').text(jqXHR.responseText);
-				//				$('#divError').show('fade');
-				//			}
-				//		});
-				//	});
+						$.ajax({
+							url: '/token',
+							method: 'POST',
+                            contentType:'application/json',
+							data: {
+								username: $('#txtUsername').val(),
+								password: $('#txtPassword').val(),
+                                grant_type:'password'
+							},
+
+						    //when the request completes successfully, save the access token in browser
+                            // session storage and redirect to the user to data.html page.
+							success: function (response) {
+							    sessionStorage.setItem("accessToken", response.access_token);
+							    window.location.href = 'Data.html';
+							},
+                            //display errors if any in bootstrap alert 
+							error: function (jqXHR) {
+								$('#divErrorText').text(jqXHR.responseText);
+								$('#divError').show('fade');
+							}
+						});
+					});
 			});
 	</script>
 </body>
