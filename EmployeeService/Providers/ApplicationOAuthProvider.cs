@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using EmployeeService.Models;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
-using EmployeeService.Models;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace EmployeeService.Providers
 {
@@ -75,7 +72,7 @@ namespace EmployeeService.Providers
         {
             if (context.ClientId == _publicClientId)
             {
-                Uri expectedRootUri = new Uri(context.Request.Uri, "/");
+                Uri expectedRootUri = new Uri(context.Request.Uri, "/Login.html");
 
                 if (expectedRootUri.AbsoluteUri == context.RedirectUri)
                 {

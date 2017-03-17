@@ -3,6 +3,7 @@ using EmployeeService.Providers;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
@@ -55,11 +56,11 @@ namespace EmployeeService
             //    appId: "",
             //    appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "97955594476-5ivv4o721aipar50m33um1uto79a31qn.apps.googleusercontent.com",
+                ClientSecret = "tRjvPWJRXUfyK_rjIg4rY2OB"
+            });
         }
     }
 }
