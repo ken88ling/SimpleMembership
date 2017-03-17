@@ -345,7 +345,7 @@ namespace EmployeeService.Controllers
         [Route("RegisterExternal")]
         public async Task<IHttpActionResult> RegisterExternal()
         {
-            
+
             var info = await Authentication.GetExternalLoginInfoAsync();
             if (info == null)
             {
