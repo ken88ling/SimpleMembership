@@ -79,8 +79,14 @@
 							// session storage and redirect to the user to data.html page.
 							success: function (response) {
 							    localStorage.setItem("accessToken", response.access_token);
-								window.location.href = 'Data.html';
+							    localStorage.setItem("userName", response.userName);
+							    window.location.href = 'Data.html';
+
+							    //$('#divErrorText').text(JSON.stringify(response));
+							    //$('#divError').show('fade');
 							},
+
+
 							//display errors if any in bootstrap alert
 							error: function (jqXHR) {
 								$('#divErrorText').text(jqXHR.responseText);

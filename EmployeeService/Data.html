@@ -10,6 +10,7 @@
         <div class="well">
             <!--This table contain the fields that we want to capture to register a new user-->
             <input type="button" class="btn btn-success" value="Load Employees" id="btnLoadEmployees" />
+            <span id="spanUsername" class="text-muted"></span>
             <div class="pull-right"><input type="button" class="btn btn-success" value="Logout" id="btnLogout" /></div>
         </div>
 
@@ -70,6 +71,8 @@
                     window.location.href = 'Login.html';
                 }
 
+                $('#spanUsername').text('Hello, ' + localStorage.getItem('userName'));
+
                 //check the modal is close then redirect to login page
                 $('#errorModal').on('hidden.bs.modal',
                     function () {
@@ -78,7 +81,7 @@
 
                 //click logout button and remove the accessToken
                 $('#btnLogout')
-                    .click(function() {
+                    .click(function () {
                         localStorage.removeItem('accessToken');
                         window.location.href = 'Login.html';
                     });
