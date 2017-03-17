@@ -38,7 +38,7 @@
 				</tbody>
 			</table>
 
-			
+
 			<!--Bootstrap alert to display any validation errors-->
 			<div id="divError" class="alert alert-danger collapse">
 				<a href="#" id="linkClose" class="close">&times;</a>
@@ -68,20 +68,20 @@
 						$.ajax({
 							url: '/token',
 							method: 'POST',
-                            contentType:'application/json',
+							contentType: 'application/json',
 							data: {
 								username: $('#txtUsername').val(),
 								password: $('#txtPassword').val(),
-                                grant_type:'password'
+								grant_type: 'password'
 							},
 
-						    //when the request completes successfully, save the access token in browser
-                            // session storage and redirect to the user to data.html page.
+							//when the request completes successfully, save the access token in browser
+							// session storage and redirect to the user to data.html page.
 							success: function (response) {
-							    sessionStorage.setItem("accessToken", response.access_token);
-							    window.location.href = 'Data.html';
+							    localStorage.setItem("accessToken", response.access_token);
+								window.location.href = 'Data.html';
 							},
-                            //display errors if any in bootstrap alert 
+							//display errors if any in bootstrap alert
 							error: function (jqXHR) {
 								$('#divErrorText').text(jqXHR.responseText);
 								$('#divError').show('fade');

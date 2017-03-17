@@ -83,6 +83,12 @@
                         $('#divError').hide('fade');
                     });
 
+                //check the modal is close then redirect to login page
+                $('#successModal').on('hidden.bs.modal',
+                    function () {
+                        window.location.href = 'Login.html';
+                    });
+
                 // save the new user details
                 $('#btnRegister')
                     .click(function () {

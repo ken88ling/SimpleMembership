@@ -10,6 +10,7 @@
         <div class="well">
             <!--This table contain the fields that we want to capture to register a new user-->
             <input type="button" class="btn btn-success" value="Load Employees" id="btnLoadEmployees" />
+            <div class="pull-right"><input type="button" class="btn btn-success" value="Logout" id="btnLogout" /></div>
         </div>
 
         <div id="divData" class="well hide">
@@ -65,13 +66,20 @@
             .ready(function () {
 
                 //check user login
-                if (sessionStorage.getItem('accessToken') == null) {
+                if (localStorage.getItem('accessToken') == null) {
                     window.location.href = 'Login.html';
                 }
 
                 //check the modal is close then redirect to login page
                 $('#errorModal').on('hidden.bs.modal',
                     function () {
+                        window.location.href = 'Login.html';
+                    });
+
+                //click logout button and remove the accessToken
+                $('#btnLogout')
+                    .click(function() {
+                        localStorage.removeItem('accessToken');
                         window.location.href = 'Login.html';
                     });
 
@@ -88,7 +96,7 @@
                             url: '/api/employees',
                             method: 'GET',
                             headers: {
-                                'Authorization': 'Bearer ' + sessionStorage.getItem('accessToken')
+                                'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
                             },
                             success: function (data) {
                                 $('#divData').removeClass('hide');
